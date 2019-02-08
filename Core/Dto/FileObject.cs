@@ -26,6 +26,29 @@ namespace Core.Dto
         public int TotalDownloads { get; set; }
         //Password required for download of file
         public string Password { get; set; }
-        //Status response ind
+        //Maximum time in minutes to download files. 
+        public int MaxTime { get; set; }
+        //Bool to indicate success of download
+        public bool Success { get; set; }
+        //Hold list of Items returned from database
+        public List<FileObject> Table { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            var @object = obj as FileObject;
+            return @object != null &&
+                   UniqueFileName == @object.UniqueFileName &&
+                   EqualityComparer<byte[]>.Default.Equals(FileByteArray, @object.FileByteArray) &&
+                   TimeCreated == @object.TimeCreated &&
+                   ExpirationTime == @object.ExpirationTime &&
+                   MaxDownloads == @object.MaxDownloads &&
+                   TotalDownloads == @object.TotalDownloads &&
+                   Password == @object.Password;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(UniqueFileName, FileByteArray, TimeCreated, ExpirationTime, MaxDownloads, TotalDownloads, Password);
+        }
     }
 }

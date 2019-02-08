@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Dto;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,7 +9,7 @@ using System.Text;
 namespace Client
 {
     [Serializable]
-    class UploadFile
+    public class UploadFile
     {
         //Property for key or id
         [Key]
@@ -35,5 +36,11 @@ namespace Client
         //Password required for download of file
         [Column("password")]
         public string Password { get; set; }
+        //Maximum time in minutes to download files. 
+        public int MaxTime { get; set; }
+        //Bool to indicate success of download
+        public bool Success { get; set; }
+        //Hold list of Items returned from database
+        public List<FileRequest> Table { get; set; }
     }
 }

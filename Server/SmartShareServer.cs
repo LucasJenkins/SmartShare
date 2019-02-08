@@ -1,10 +1,12 @@
-﻿namespace Server
+﻿using System.Xml.Serialization;
+
+namespace Server
 {
     class Program
     {
         static void Main(string[] args)
         {
-            // TODO
+            ServerListener.Listen();
         }
     }
 }

@@ -9,17 +9,20 @@ namespace Client.Options
     [Verb("view", HelpText = "Retrieves a file information table")]
     public class ViewOption
     {
-        [Value(0, MetaName = "filename", HelpText = "Unique name of file to be downloaded", Required = true)]
+        [Option('f', "filename", HelpText = "Unique name of file to be downloaded", Required = true)]
         public string FileName { get; set; }
 
-        [Value(1, MetaName = "password", HelpText = "Password used to access file", Required = true)]
+        [Option('p', "password", HelpText = "Password used to access file", Required = true)]
         public string Password { get; set; }
 
-        public static int ExecuteViewOptionsAndReturnExitCode(ViewOption options)
+
+        public static void ExecuteViewOptionsAndReturnExitCode(ViewOption options)
         {
-            // TODO
-            Console.WriteLine("Attempting to gather data");
-            return 0;
+            
+            Console.WriteLine($"Uploading {file.FullName}");
+            Console.WriteLine($"Password: {options.Password}");
+            return Api.View(options);
+
         }
     }
 }
