@@ -42,18 +42,19 @@ namespace Server
                 Console.WriteLine(textRequestDto.UniqueFileName);
 
                 var success = SaveTextToDb(textRequestDto);
-                var statusResponseDto = new FileRequest {  = success };
+                var statusResponseDto = new FileRequest {Success  = success };
                 responseSerializer.Serialize(stream, statusResponseDto);
             }
         }
         public static bool SaveTextToDb(FileRequest requestObj)
         {
-            FileRequest filerequest = mapTextRequestToTextEntity(requestObj);
+            DownloadFile filerequest = mapTextRequestToTextEntity(requestObj);
 
             using (SmartShareContext context = new SmartShareContext())
             {
                 try
                 {
+
                     context.FilesIn.Add(filerequest);
                     context.SaveChanges();
                     return true;
