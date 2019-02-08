@@ -65,6 +65,7 @@ namespace Server
                     Console.WriteLine(e.StackTrace);
                     return false;
                 }
+
             }
         }
         public static DownloadFile mapTextRequestToTextEntity(FileRequest fileRequest)
